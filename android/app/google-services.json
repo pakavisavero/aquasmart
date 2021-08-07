@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "499716946810",
+    "firebase_url": "https://ikan-koi-default-rtdb.firebaseio.com",
+    "project_id": "ikan-koi",
+    "storage_bucket": "ikan-koi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499716946810:android:9e2e3ba4d6a2311e35f4c3",
+        "android_client_info": {
+          "package_name": "com.example.pkm_koi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499716946810-hk009m5knq1no97ikgjd4mpdq6cin8pk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClX9AN0gxYxER52JU7Iqz92sMtfiSW9vY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499716946810-hk009m5knq1no97ikgjd4mpdq6cin8pk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
