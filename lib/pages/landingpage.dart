@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pkm_koi/pages/homepage.dart';
+import 'package:pkm_koi/pages/login.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key key}) : super(key: key);
@@ -74,7 +74,7 @@ class _LandingPageState extends State<LandingPage> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return Homepage();
+                        return Login();
                       }));
                     },
                     child: Container(

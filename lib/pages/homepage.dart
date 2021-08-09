@@ -7,7 +7,8 @@ import 'package:pkm_koi/detail/suhu.dart';
 import 'package:pkm_koi/detail/tds.dart';
 import 'package:pkm_koi/detail/voltage.dart';
 import 'package:pkm_koi/model/DataIkan.dart';
-import 'package:pkm_koi/model/User.dart';
+import 'package:pkm_koi/services/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key key}) : super(key: key);
@@ -40,6 +41,11 @@ class _HomepageState extends State<Homepage> {
       });
     }
 
+    Future logoutUser() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('login', false);
+    }
+
     Widget mainBody() {
       return Container(
         margin: EdgeInsets.only(top: 35),
@@ -61,16 +67,33 @@ class _HomepageState extends State<Homepage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 15),
-                            child: Text(
-                              'Hi, Savero',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 15),
+                                child: Text(
+                                  'Hi, User',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: () async {
+                                  AuthServices().signOut();
+                                  await logoutUser();
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      '/login',
+                                      (Route<dynamic> route) => false);
+                                },
+                                child: Text('Logout',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15)),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 30),
                           GestureDetector(
@@ -101,33 +124,15 @@ class _HomepageState extends State<Homepage> {
                           SizedBox(height: 30),
                           Container(
                             margin: EdgeInsets.only(left: 15, right: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    'Daily Review',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                            child: Container(
+                              child: Text(
+                                'Daily Review',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Icon(
-                                      Icons.ac_unit,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
                           ),
                           SizedBox(height: 30),

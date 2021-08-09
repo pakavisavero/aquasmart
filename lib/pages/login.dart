@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pkm_koi/services/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,6 +12,11 @@ class _LoginState extends State<Login> {
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  saveUser(dynamic user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('login', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +124,7 @@ class _LoginState extends State<Login> {
                   } else {
                     print('sign in');
                     print(user);
+                    saveUser(user);
                     Navigator.pushNamed(context, '/homepage');
                   }
                 },

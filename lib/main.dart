@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -7,12 +6,13 @@ import 'package:pkm_koi/detail/pakan.dart';
 import 'package:pkm_koi/detail/suhu.dart';
 import 'package:pkm_koi/detail/tds.dart';
 import 'package:pkm_koi/detail/voltage.dart';
-import 'package:pkm_koi/model/User.dart';
 import 'package:pkm_koi/pages/detail_page.dart';
 import 'package:pkm_koi/pages/homepage.dart';
 import 'package:pkm_koi/pages/landingpage.dart';
 import 'package:pkm_koi/pages/login.dart';
 import 'package:pkm_koi/pages/splash_screen.dart';
+
+//https://theiotprojects.com/insert-data-into-mysql-database-with-esp8266/
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
