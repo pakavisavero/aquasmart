@@ -7,6 +7,7 @@ import 'package:pkm_koi/detail/suhu.dart';
 import 'package:pkm_koi/detail/tds.dart';
 import 'package:pkm_koi/detail/voltage.dart';
 import 'package:pkm_koi/model/DataIkan.dart';
+import 'package:pkm_koi/model/User.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key key}) : super(key: key);
@@ -178,9 +179,10 @@ class _HomepageState extends State<Homepage> {
                                   });
                                 },
                                 child: dataSensor(
-                                  "Pakan",
-                                  data.pakan.toString(),
+                                  "Sumber Daya",
+                                  data.daya == 1 ? 'PLTS' : 'PLN',
                                   130,
+                                  isWhite: true,
                                 ),
                               ),
                             ],
@@ -278,7 +280,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  Padding dataSensor(String desc, dynamic data, double height) {
+  Padding dataSensor(String desc, dynamic data, double height, {bool isWhite}) {
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
@@ -288,8 +290,8 @@ class _HomepageState extends State<Homepage> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xff5450d6),
-              Color(0xff5450d6),
+              isWhite != true ? Color(0xff5450d6) : Colors.white,
+              isWhite != true ? Color(0xff5450d6) : Colors.white,
             ],
           ),
           borderRadius: BorderRadius.circular(20),
@@ -302,7 +304,7 @@ class _HomepageState extends State<Homepage> {
                 data,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: isWhite != true ? Colors.white : Color(0xFF4530b2),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -312,7 +314,7 @@ class _HomepageState extends State<Homepage> {
                 desc,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.white,
+                  color: isWhite != true ? Colors.white : Color(0xFF4530b2),
                 ),
               ),
             ],

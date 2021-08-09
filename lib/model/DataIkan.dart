@@ -1,13 +1,8 @@
 class DataIkan {
-  final int dissolved;
-  final String pakan;
-  final double suhu;
-  final int tds;
-  final double voltage;
-
+  final dynamic dissolved, daya, suhu, tds, voltage;
   DataIkan({
     this.dissolved,
-    this.pakan,
+    this.daya,
     this.suhu,
     this.tds,
     this.voltage,
@@ -16,7 +11,7 @@ class DataIkan {
   factory DataIkan.fromJson(Map<dynamic, dynamic> json) {
     return DataIkan(
       dissolved: json['do'],
-      pakan: json['pakan'],
+      daya: json['isPLTS'],
       suhu: json['suhu'],
       tds: json['tds'],
       voltage: json['voltage'],

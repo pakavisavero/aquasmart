@@ -9,6 +9,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final AuthServices _auth = AuthServices();
 
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +52,8 @@ class _LoginState extends State<Login> {
                       SizedBox(height: 100),
                       Container(
                         child: TextField(
+                          controller: email,
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: 'Username or email',
                             hintStyle: TextStyle(color: Colors.grey),
@@ -72,6 +77,9 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 20),
                       TextField(
+                        controller: password,
+                        style: TextStyle(color: Colors.white),
+                        obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey),
@@ -103,14 +111,15 @@ class _LoginState extends State<Login> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () async {
-                  dynamic user = await _auth.signInAnon();
+                  dynamic user = await _auth.signInWithEmailAndPassword(
+                      email.text, password.text);
                   if (user == null) {
                     print('Error sign in!');
                   } else {
                     print('sign in');
-                    print(user.uid);
+                    print(user);
+                    Navigator.pushNamed(context, '/homepage');
                   }
-                  Navigator.pushNamed(context, '/homepage');
                 },
                 child: Text('Sign In',
                     style: TextStyle(color: Colors.black, fontSize: 20)),
